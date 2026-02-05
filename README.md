@@ -9,7 +9,7 @@ A multimodal AI-powered chatbot that provides intelligent product recommendation
 This project implements a **multimodal retail chatbot** that:
 - Accepts **product images** for visual search
 - Supports **text-based queries** for product recommendations
-- Integrates **voice input** (optional Whisper integration)
+- Integrates **voice input** 
 - Uses **CLIP embeddings** for semantic understanding
 - Leverages **FAISS** for fast similarity search across 44,000+ products
 - Displays **top-5 similar product recommendations**
@@ -198,108 +198,11 @@ IMG_PATH = "data"           # Image folder path
 CSV_PATH = "data.csv"       # Metadata CSV path
 ```
 
----
-
-## 🐛 Troubleshooting
-
-### Issue: `ModuleNotFoundError: No module named 'torch'`
-**Solution**: Reinstall PyTorch with CPU support
-```bash
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-```
-
-### Issue: `ModuleNotFoundError: No module named 'faiss'`
-**Solution**: Install FAISS
-```bash
-pip install faiss-cpu
-```
-
-### Issue: Images not loading
-**Solution**: Verify `data/` folder exists and contains images
-```bash
-ls data/  # Check directory
-```
-
-### Issue: Slow index building on first run
-**Solution**: This is normal for 44,441 images. Initial run takes ~10-15 minutes. Subsequent runs use cached index.
-
-### Issue: Out of memory
-**Solution**: Use CPU instead of GPU or reduce batch size in custom configurations
-
----
-
-## 🔄 GPU Support
-
-If you have an **NVIDIA GPU**:
-
-Install GPU-enabled PyTorch:
-```bash
-pip uninstall torch torchvision torchaudio
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-```
-
-The app automatically detects and uses GPU if available.
-
----
-
-## 📝 Code Overview
-
-### Key Functions
-
-#### `load_data()`
-Loads product metadata from CSV file
-
-#### `load_clip_model()`
-Initializes CLIP model on GPU/CPU
-
-#### `extract_clip_embedding(image)`
-Converts image to 512-dimensional CLIP embedding
-
-#### `l2_normalize(x)`
-L2 normalization for embeddings
-
-#### `build_image_index()`
-Processes all images and builds FAISS index
-
-#### `recommend_similar_products(query_image, top_k=5)`
-Returns top-k similar product paths
-
----
-
-## 🚀 Future Enhancements
-
-- [ ] Text-to-image recommendation backend
-- [ ] Whisper integration for voice search
-- [ ] Product filtering by category
-- [ ] User feedback loop for ranking
-- [ ] Batch image upload support
-- [ ] REST API for external integrations
-- [ ] Multi-language support
-- [ ] Real-time index updates
-
----
-
-## 📄 License
-
-This project is provided as-is for educational and commercial use.
-
----
-
 ## 👤 Author
 
 **Varshith Goud**
 
 GitHub: [varshithgoud2407](https://github.com/varshithgoud2407)
-
----
-
-## 📞 Support
-
-For issues, questions, or suggestions:
-1. Check the **Troubleshooting** section
-2. Review error messages in the terminal
-3. Ensure all dependencies are installed
-4. Verify file paths are correct
 
 ---
 
@@ -313,4 +216,4 @@ For issues, questions, or suggestions:
 ---
 
 **Last Updated**: February 5, 2026  
-**Project Status**: ✅ Active & Maintained
+
